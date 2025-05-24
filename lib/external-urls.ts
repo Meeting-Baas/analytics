@@ -2,24 +2,30 @@
 // It would be empty for prod.
 const environment = process.env.NEXT_PUBLIC_ENVIRONMENT || ""
 
+// Meeting BaaS base domain for external app URLs (Without protocol or leading dot)
+const BASE_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN || "meetingbaas.com"
+
+// Helper to construct environment-aware URLs
+const createUrl = (subdomain: string) => {
+  if (environment) {
+    return `https://${subdomain}.${environment}${BASE_DOMAIN}`
+  }
+  return `https://${subdomain}.${BASE_DOMAIN}`
+}
+
 // Chat App
-export const AI_CHAT_URL = `https://chat.${environment}meetingbaas.com`
+export const AI_CHAT_URL = createUrl("chat")
 
-// Meeting BaaS home page
-export const MEETING_BAAS_HOMEPAGE_URL = "https://meetingbaas.com"
-
-// Terms of use
-export const TERMS_AND_CONDITIONS_URL = "https://meetingbaas.com/terms-and-conditions"
-
-// Privacy policy
-export const PRIVACY_POLICY_URL = "https://meetingbaas.com/privacy"
+// Main app URLs
+export const MEETING_BAAS_HOMEPAGE_URL = createUrl("")
+export const TERMS_AND_CONDITIONS_URL = `${MEETING_BAAS_HOMEPAGE_URL}/terms-and-conditions`
+export const PRIVACY_POLICY_URL = `${MEETING_BAAS_HOMEPAGE_URL}/privacy`
 
 // Utility
-export const SETTINGS_URL = `https://${environment}meetingbaas.com`
-export const LOGS_URL = `${SETTINGS_URL}/logs`
+export const SETTINGS_URL = createUrl("settings")
+export const LOGS_URL = createUrl("logs")
 export const CREDENTIALS_URL = `${SETTINGS_URL}/credentials`
-export const CONSUMPTION_URL = `${SETTINGS_URL}/usage`
-export const BILLING_URL = `${SETTINGS_URL}/billing`
+export const BILLING_URL = `${createUrl("pricing")}/billing`
 
 // Github
 export const GITHUB_REPO_URL = "https://github.com/Meeting-Baas/analytics"

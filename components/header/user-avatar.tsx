@@ -33,7 +33,7 @@ export const UserAvatar = ({ user }: { user: User }) => {
       setLoading(false)
       return
     }
-    window.location.href = "/"
+    window.location.reload()
   }
 
   return (

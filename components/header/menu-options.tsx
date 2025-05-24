@@ -1,7 +1,6 @@
 import {
   AI_CHAT_URL,
   BILLING_URL,
-  CONSUMPTION_URL,
   CREDENTIALS_URL,
   LOGS_URL,
   SETTINGS_URL
@@ -30,10 +29,6 @@ export const menuOptions: MenuOption[] = [
   {
     title: "Logs",
     href: LOGS_URL
-  },
-  {
-    title: "Consumption",
-    href: CONSUMPTION_URL
   },
   {
     title: "Billing",
